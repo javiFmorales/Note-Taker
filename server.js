@@ -53,8 +53,7 @@ app.post('/api/notes', (req, res) => {
     console.log("inside API")
     const note = createNewNote(req.body, db);
     res.json(note);
-    //might not be right , trying to append the body i created 
-    //note.push(req.body)
+   
 });
 
 
