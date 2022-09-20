@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.Port || 3001;
+const PORT = process.env.PORT || 3001;
 
 
 const fs = require('fs');
@@ -35,16 +35,16 @@ app.get('*', (req, res) => {
 });
 
 
-function createNewNote(note, notesArray) {
+function createNewNote(note, notesArr) {
     console.log(note)
     const newNote = {
         ...note,
         id:  short.generate() 
     }
     console.log(newNote)
-    notesArray.push(newNote);
+    notesArr.push(newNote);
     fs.writeFileSync(path.join(__dirname, './db/db.json'),
-        JSON.stringify(notesArray, null, 2))
+        JSON.stringify(notesArr, null, 2))
 }  
 
 
@@ -56,28 +56,6 @@ app.post('/api/notes', (req, res) => {
    
 });
 
-
-// function deleteNote(id, notesArray) {
-//     for (let i = 0; i < notesArray.length; i++) {
-//         let note = notesArray[i]
-//         if (note.id == id) {
-//             notesArray.splice(i, 1);
-//             fs.writeFileSync(
-//                 path.join(__dirname, './db/db.json'),
-//                 JSON.stringify(notesArray, null, 2)
-//             );
-//             break;
-
-
-
-//         }
-//     }
-// }
-
-// app.delete('./api/notes/:id', (req, res) => {
-//     deleteNote(req.params.id, db);
-//     res.json("note has been added");
-// });
 
 app.listen(PORT, () => {
     console.log(`NOW LISTENING ON ${PORT}`);
